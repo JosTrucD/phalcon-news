@@ -1,0 +1,79 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>Quản lý Người dùng</h1>
+  <ol class="breadcrumb">
+    <li><a href="<?php echo base_url() ?>"><i class="fa fa-desktop"></i> Home</a></li>
+    <li><a href="<?php echo base_url() ?>user">Người dùng</a></li>
+  </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Bảng dữ liệu</h3>
+          <?php if ($_user['role'] == 1  || $_user['role'] == 2) { ?>
+          <div class="button-right">
+              <a href="<?php echo base_url() ?>user/create" class="btn btn-primary">Tạo mới</a>
+          </div>
+          <?php } ?>
+        </div><!-- /.box-header -->
+        <?php echo $this->flash->output() ?>
+        <div class="box-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th class="align" width="4%">No.</th>
+                <th class="align">User</th>
+                <th class="align">Name</th>
+                <th class="align">Email</th>
+                <th class="align" width="20%">Address</th>
+                <th class="align" width="10%">Phone</th>
+                <th class="align" width="10%">Date</th>
+                <th class="align" width="10%">Role</th>
+                <th class="align" width="10%">Create by</th>
+                <th class="align" width="5%">Active</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+                $countAdmin = $countMember = '';
+                foreach ($data['users'] as $key => $value) {
+                  if ($value->role == 2) $countAdmin  = $countAdmin + 1;
+                  if ($value->role == 3) $countMember = $countMember + 1;
+               ?>
+              <tr>
+                <td class="align"><?php echo $key + 1 ?></td>
+                <td><a href="<?php echo base_url()."user/edit?i=".$value->id ?>"><?php echo $value->user ?></a></td>
+                <td><?php echo $value->name ?></td>
+                <td><?php echo $value->email ?></td>
+                <td><?php echo $value->address ?></td>
+                <td><?php echo $value->phone ?></td>
+                <td><?php echo $value->date ?></td>
+                <?php 
+                  if ($value->role == 1) {
+                    echo '<td class="align">Super Admin</td>';
+                  } else if ($value->role == 2) {
+                    echo '<td class="align">Admin</td>';
+                  } else if ($value->role == 3) {
+                    echo '<td class="align">Member</td>';
+                  }
+                  echo '<td class="align">'.$value->create_by.'</td>';
+                  echo $this->helper->check($value->id, $value->active);
+                 ?>                
+              </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div><!-- /.box-body -->
+        <div class="info">          
+          <p><b>Tổng : <?php echo count($data['users']) ?></b></p>
+          <p>- 1 super admin</p>
+          <p>- <?php echo $countAdmin ?> admin</p>
+          <p>- <?php echo $countMember ?> thành viên</p>
+          <p>- thành viên mới trong tuần</p>
+        </div>
+      </div><!-- /.box -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->

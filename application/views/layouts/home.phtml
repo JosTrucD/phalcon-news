@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="" >
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php echo $this->tag->getTitle(); ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>skin/home/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>skin/home/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>skin/home/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>skin/home/css/style.css">
+  </head>
+  <body>
+    <header id="ccr-header">
+      <section id="ccr-nav-top" class="fullwidth">
+        <div class="">
+          <div class="container">
+            <nav class="top-menu">
+              <ul class="left-top-menu">
+                <li><a href="">Home</a></li>
+                <li><a href="">Site Map</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul><!-- /.left-top-menu -->
+
+              <ul class="right-top-menu pull-right">
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li>
+                <li><a href="#">Subscribe</a></li>
+                <li>
+                  <form class="form-inline" role="form" action="#">
+                    <input type="search" placeholder="Search here..." required>
+                      <button type="submit"><i class="fa fa-search"></i></button>
+                  </form>
+                </li>
+              </ul> <!--  /.right-top-menu -->
+            </nav> <!-- /.top-menu -->
+          </div>
+        </div>  
+      </section> <!--  /#ccr-nav-top  -->
+
+
+      
+      <section id="ccr-site-title">
+        <div class="container">
+          <div class="site-logo">
+            <a href="<?php echo base_url(); ?>" class="navbar-brand">
+              <img src="<?php echo base_url(); ?>skin/home/img/logo.png" alt="Logo"/>
+                <h1>TRẠI GẠO</h1>
+                <h3>Vùng đất bình yên</h3>
+            </a>
+          </div> <!-- / .navbar-header -->
+
+          <div class="add-space">
+            728 x 90 px Banner
+          </div> <!-- / .adspace -->
+
+        </div>  <!-- /.container -->
+      </section> <!-- / #ccr-site-title -->
+
+
+
+      <section id="ccr-nav-main">
+        <nav class="main-menu">
+          <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".ccr-nav-main">
+                        <i class="fa fa-bars"></i>
+                      </button> <!-- /.navbar-toggle -->
+            </div> <!-- / .navbar-header -->
+
+            <div class="collapse navbar-collapse ccr-nav-main">
+              <ul class="nav navbar-nav">
+                <li><a class="active" href="<?php echo base_url() ?>">Trang chủ</a></li>
+                <?php 
+                  if ($menu) {
+                    // debug($menu);die;
+                    foreach ($menu as $key => $val) {
+                      if ($val['lever'] == 1) {
+                        $name = '<a href="">'.$val['name'].' <i class="fa fa-caret-down"></i></a>';
+                      } else {
+                        for ($i=2; $i <= $val['lever']; $i++) { 
+                        }
+                        $name = '<ul class="sub-menu"><li><a href="">'.$val['name'].'</a></li></ul>';
+                      }
+                    echo '<li class="dropdown">'.$name.'</li>';
+                    }
+                  }
+                 ?>
+                <!-- <li class="dropdown">
+                  <a href="#">Blog <i class="fa fa-caret-down"></i></a>
+                  <ul class="sub-menu">
+                    Blog 1</a></li>
+                    <li><a href="blog-2.html">Blog 2
+                    <li><a href="blog-3.html">Blog 3</a></li>
+                  </ul>
+                </li> -->
+              </ul> <!-- /  .nav -->
+            </div><!-- /  .collapse .navbar-collapse  -->
+
+            <div id="currentTime" class="pull-right current-time">
+              <i class="fa fa-calendar" ></i> <span id="date"><?php echo date("l") ?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <i class="fa fa-clock-o" ></i> <span id="time"></span>
+            </div><!-- / #currentTime -->
+
+          </div>  <!-- /.container -->
+        </nav> <!-- /.main-menu -->
+      </section> <!-- / #ccr-nav-main -->
+    </header> <!-- /#ccr-header -->
+    <section id="ccr-main-section">
+      <div class="container">
+        <section id="ccr-left-section" class="col-md-8"> 
+          <?php echo $this->getContent(); ?>
+        </section><!-- /.col-md-8 / #ccr-left-section -->
+        <aside id="ccr-right-section" class="col-md-4 ccr-home">      
+          <section id="sidebar-entertainment-post">
+            <div class="ccr-gallery-ttile">
+              <span></span> 
+              <p><strong>Cha nhiệm sở</strong></p>
+            </div> <!-- .ccr-gallery-ttile -->
+
+            <div class="sidebar-entertainment">
+              <img src="<?php echo base_url(); ?>/skin/home/img/entertainment.jpg" alt="entertainment">
+              <a href="#">Miss Joly loves you to share her tell. Are you ready?</a>
+            </div>
+            <div class="date-like-comment">
+              <a href="#" class="like"><i class="fa fa-thumbs-o-up"></i> 08</a>
+              <a href="#" class="comments"><i class="fa fa-comments-o"></i> 49</a>
+            </div>
+          </section>  <!-- sidebar-entertainment-post -->
+
+          <section id="ccr-calender">
+            <div id="calendar" style="width: 100%"></div>
+          </section>
+
+          <section id="sidebar-popular-post">
+            <div class="ccr-gallery-ttile">
+              <span></span> 
+              <p><strong>Popular Post</strong></p>
+            </div> <!-- .ccr-gallery-ttile -->
+            <ul>
+              <li>
+                <img src="<?php echo base_url(); ?>/skin/home/img/sports-thumb-10.jpg" alt="Avatar">
+                <a href="#">This is the first popular post</a>
+                <div class="date-like-comment">
+                  <span class="date"><time datetime="2014-02-17">2014-02-17</time></span>
+                  <a class="like" href="#"><i class="fa fa-thumbs-o-up"></i> 08</a>
+                  <a class="comments" href="#"><i class="fa fa-comments-o"></i> 49</a>
+                </div>
+              </li>
+            </ul>
+          </section> <!-- /#sidebar-popular-post -->
+
+          <section id="sidebar-video-post">
+            <div class="ccr-gallery-ttile">
+              <span></span> 
+              <p><strong>Video Post</strong></p>
+            </div> <!-- .ccr-gallery-ttile -->
+
+            <div class="sidebar-video">
+            <iframe width="340" height="195" src="//www.youtube.com/embed/Ak8f8yTPRRc" frameborder="0" allowfullscreen></iframe>
+            Giáo xứ Trại Gạo ...
+            </div>
+            <div class="date-like-comment">
+              <a href="#" class="like"><i class="fa fa-thumbs-o-up"></i> 08</a>
+              <a href="#" class="comments"><i class="fa fa-comments-o"></i> 49</a>
+            </div>
+          </section>  <!-- /#sidebar-video-post -->
+
+          <section id="ccr-sidebar-add-place">
+            <div class="sidebar-add-place">
+              370x250 px
+            </div> 
+          </section> <!-- /#ccr-sidebar-add-place -->
+
+          <section id="ccr-sidebar-newslater">            
+            <div class="ccr-gallery-ttile">
+              <span></span> 
+              <p><label for="sb-newslater"><strong>Newslater</strong></label></p>
+            </div> <!-- .ccr-gallery-ttile -->            
+            <div class="sidebar-newslater-form">
+              <form class="ccr-gallery-ttile" action="#">
+                <input type="email" id="sb-newslater" name="sb-newslater" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+              </form>
+            </div> <!-- /.sidebar-newslater-form -->            
+          </section> <!-- /#ccr-sidebar-newslater -->
+
+          <section id="ccr-find-on-fb">
+            <div class="find-fb-title">
+              <span><i class="fa fa-facebook"></i></span> Find us on Facebook
+            </div> <!-- /.find-fb-title -->
+            <div class="find-on-fb-body">
+            <div class="fb-like-box" data-href="https://www.facebook.com/GxTraiGao?fref=ts" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+
+            </div> <!-- /.find-on-fb-body -->
+          </section> <!-- /#ccr-find-on-fb -->
+        </aside><!-- / .col-md-4  / #ccr-right-section -->
+      </div><!-- /.container -->
+    </section><!-- / #ccr-main-section -->
+    <aside id="ccr-footer-sidebar">
+      <div class="container">
+
+        <ul>
+          <li class="col-md-3">
+            <h5>Giới thiệu</h5>
+            <ul>
+              <li><p>Cha nhiệm sở: Jb. Trần Văn Hào (Sdb)</p></li>
+              <li><p>Số tín hữu: </p></li>
+            </ul>            
+          </li>
+          <li class="col-md-3">
+            <h5>Popular Post</h5>
+            <ul>
+              <li>
+              </li>
+            </ul>
+            
+          </li>
+          <li class="col-md-3">
+            <h5>Thông tin liên hệ</h5>
+            <ul>
+              <li><p>[W] giaoxutraigao.com</p></li>
+              <li><p>[E] gxtraigao@gmail.com</p></li>
+            </ul>            
+          </li>
+          <li class="col-md-3">
+            <h5>Tags</h5>
+            <div class="tagcloud">
+              <a href="#">Football</a>
+            </div>
+            
+          </li>
+        </ul>
+      </div>      
+    </aside> <!-- /#ccr-footer-sidebar -->
+    <footer id="ccr-footer">
+      <div class="container">
+        <div class="copyright">
+          &copy; 2015, Bản quyền thuộc Giáo xứ Trại Gạo. Phát triển bởi <a href="">JosTruc</a>
+        </div> <!-- /.copyright -->
+
+        <div class="footer-social-icons">
+          <ul>
+            <li>
+              <a href="#"  class="google-plus"><i class="fa fa-google-plus"></i></a>
+            </li>
+            <li >
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li >
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li >
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </li>
+          </ul>
+          
+        </div><!--  /.cocial-icons -->
+
+      </div> <!-- /.container -->
+    </footer>  <!-- /#ccr-footer -->
+    <script src="<?php echo base_url(); ?>skin/home/js/jquery-1.9.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>skin/home/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>skin/home/js/custom.js"></script>
+    <script src="<?php echo base_url(); ?>skin/admin/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script>
+      $(document).ready(function(){
+        // Slider
+        $('.item').eq(0).addClass('active');
+      });
+      var myVar = setInterval(function(){myTimer()},1000);
+
+      function myTimer() {
+          var d = new Date();
+          document.getElementById("time").innerHTML = d.toLocaleTimeString();
+      }
+    </script>
+  </body>
+</html>

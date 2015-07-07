@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="" >
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php echo $this->tag->getTitle() ?>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>skin/home/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>skin/home/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>skin/home/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>skin/home/css/style.css">
+</head>
+<body>
+<section id="ccr-main-section">
+	<div class="container">
+		<section id="ccr-404-error">
+			<div class="error-404">
+				<p class="error-msg">Error 404</p>
+				<h2>Page Not Found!</h2>
+				<p>Xin lỗi! Chúng tôi không thể tìm thấy trang web mà bạn đang tìm kiếm! Vui lòng tìm kiếm dưới đây ...</p>
+				<form class="ccr-gallery-ttile" action="#">
+					<input type="text" id="404-search" name="s" placeholder="Tìm ở đây..." required>
+					<button type="submit">Search</button>
+				</form>
+				<br>
+				<i class="fa fa-arrow-left"></i> <a class="read-more" href="javascript:history.back()">Quay Lại</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="read-more" href="<?php echo base_url() ?>">Trang Chủ</a> <i class="fa fa-arrow-right"></i>
+			</div>	<!-- /.error-404 -->
+		</section> <!-- /#ccr-404-error -->
+	</div> <!-- /.container -->
+</section> <!-- /#ccr-main-section -->
+
+	<script src="<?php echo base_url() ?>skin/home/js/jquery-1.9.1.min.js"></script>
+	<script src="<?php echo base_url() ?>skin/home/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url() ?>skin/home/js/custom.js"></script>
+</body>
+</html>
