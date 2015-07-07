@@ -1,0 +1,77 @@
+<div class="ccr-last-update">
+  <div class="update-ribon">Tin mới nhất</div> <!-- /.update-ribon -->
+  <span class="update-ribon-right"></span> <!-- /.update-ribon-left -->
+  <div class="update-right-border"></div> <!-- /.update-right-border -->
+</div> <!-- / .ccr-last-update -->
+<section id="ccr-slide-main" class="carousel slide" data-ride="carousel">            
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+  <?php 
+    foreach ($data['slider'] as $key => $slider) {
+   ?>
+    <div class="item">
+      <div class="container slide-element">
+        <a href="<?php echo base_url()."bai-viet/".$slider->id."-".$string ?>">
+        <img src="<?php echo base_url()."uploads/news/".$this->date->mdY($slider->date)."/".$slider->image ?>" title="<?php echo $slider->name ?>" alt="<?php echo $slider->image ?>" width="770" height="436">
+        </a>
+        <p><?php echo $slider->name ?></p>
+      </div> <!-- /.slide-element -->
+    </div> <!--/.active /.item -->
+  <?php } ?>
+
+  </div> <!-- /.carousel-inner -->      
+  <!-- slider nav -->
+  <a class="carousel-control left" href="#ccr-slide-main" data-slide="prev"><i class="fa fa-arrow-left"></i></a>
+  <a class="carousel-control right" href="#ccr-slide-main" data-slide="next"><i class="fa fa-arrow-right"></i></a>
+  <ol class="carousel-indicators">
+    <li data-target="#ccr-slide-main" data-slide-to="0" class="active"></li>
+    <li data-target="#ccr-slide-main" data-slide-to="1"></li>
+    <li data-target="#ccr-slide-main" data-slide-to="2"></li>
+    <li data-target="#ccr-slide-main" data-slide-to="3"></li>
+    <li data-target="#ccr-slide-main" data-slide-to="4"></li>
+    <li data-target="#ccr-slide-main" data-slide-to="5"></li>
+  </ol> <!-- /.carousel-indicators -->          
+</section><!-- /#ccr-slide-main -->    
+<section class="bottom-border">
+</section> <!-- /#bottom-border -->
+<?php 
+  foreach ($data['category'] as $category) {
+    $news = News::find(array('category = :category: AND active = 1','order'=>'id DESC','limit'=>5,'bind'=>array('category'=>$category->id)));
+ ?>
+  <section id="ccr-world-news">
+    <div class="ccr-gallery-ttile">
+        <span></span> 
+        <p><a href="<?php echo base_url()."danh-muc/".$category->id."-".$this->string->replace($category->name) ?>?page=1"><?php echo $category->name ?></a></p>
+    </div> <!-- .ccr-gallery-ttile -->   
+    <?php 
+      foreach ($news as $key => $value) {
+        if ($key == 0) {
+     ?>
+    <section class="featured-world-news">
+      <div class="featured-world-news-img"><img src="<?php echo base_url()."uploads/news/".$this->date->mdY($value->date)."/".$value->image ?>" alt="<?php echo $value->name ?>" width="370" height="252" title="<?php echo $value->name ?>"></div>
+      <div class="featured-world-news-post">
+      <h5><?php echo $value->name ?></h5>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php $this->string->read_more($value->info, 600) ?>
+        <div class="like-comment-readmore">
+          <i class="fa fa-thumbs-o-up"> 08</i>
+          <a href="#" class="comments"><i class="fa fa-comments-o"></i> 49</a>
+          <?php $string = $this->string->replace($value->name); ?>
+          <a class="read-more" href="<?php echo base_url()."bai-viet/".$value->id."-".$string ?>">Đọc tiếp</a>
+        </div> <!-- /.like-comment-readmore -->
+      </div>
+    </section> <!-- /#featured-world-news -->
+    <ul>
+    <?php } else { ?>
+      <li>        
+          <div class="ccr-thumbnail">
+            <img src="<?php echo base_url()."uploads/news/".$this->date->mdY($value->date)."/".$value->image ?>" alt="<?php echo $value->name ?>" width="170" height="103">
+            <?php $string = $this->string->replace($value->name); ?>
+            <p><a href="<?php echo base_url()."bai-viet/".$value->id."-".$string ?>">Đọc tiếp</a></p>
+          </div>
+        <h5><a href="<?php echo base_url()."bai-viet/".$value->id."-".$string ?>"><?php $this->string->read_more($value->name, 50) ?></a></h5>
+      </li>
+    <?php } } ?>
+    </ul>
+  </section> <!-- / #ccr-world-news -->
+  <section class="bottom-border"></section>
+<?php } ?>

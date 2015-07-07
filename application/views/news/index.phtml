@@ -1,0 +1,87 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>Quản lý Bài viết</h1>
+  <ol class="breadcrumb">
+    <li><a href="<?php echo base_url() ?>"><i class="fa fa-desktop"></i> Home</a></li>
+    <li><a href="<?php echo base_url() ?>news">Bài viết</a></li>
+  </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <i class="fa fa-calendar"></i>
+          <input class="date-picker" type="text" id="date" value="<?php echo date('d/m/Y',strtotime($date['fromdate']))." Đến "; echo date('d/m/Y',strtotime($date['todate']))?>" />
+          <?php if ($_user['role'] == 1  || $_user['role'] == 2) { ?>
+          <div class="button-right">
+              <a href="<?php echo base_url() ?>news/create" class="btn btn-primary">Tạo mới</a>
+          </div> 
+          <?php } ?>
+        </div><!-- /.box-header -->
+        <?php echo $this->flash->output() ?>
+        <div class="box-body">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th class="align" width="3%">No.</th>
+                <th class="align">Name</th>
+                <th class="align" width="10%">Category</th>
+                <th class="align" width="10%">Date</th>
+                <th class="align" width="5%">Author</th>
+                <th class="align" width="5%">Active</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+                if ($page->items): 
+                  foreach ($page->items as $key => $value) :
+                    $categories = Category::find($value->category);
+                    foreach ($categories as $category)
+               ?>
+              <tr>
+                <td class="align"><?php echo $key + 1 ?></td>
+                <td><a href="<?php echo base_url()."news/edit?i=".$value->id ?>"><?php echo $value->name ?></a></td>
+                <td><?php echo $category->name ?></td>
+                <td class="align"><?php echo $value->date ?></td>
+                <td class="align"><?php echo $value->author ?></td>
+                <?php echo $this->helper->check($value->id, $value->active); ?>
+              </tr>                
+              <?php endforeach; endif; ?>
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col-xs-6">
+              <div class="dataTables_info" id="example1_info"><?php echo 'Trang '.$page->current.'/'.$page->total_pages.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tổng số: '.$page->total_items.' bài viết' ?></div>
+            </div>
+            <div class="col-xs-6">
+              <div class="dataTables_paginate paging_bootstrap">
+                <ul class="pagination">                  
+                  <?php
+                    if ($page->current == $page->first) {
+                      echo '<li class="prev disabled"><a href="'.base_url().'news?page='.$page->before.'">← Previous</a></li>';
+                    } else {
+                      echo '<li class="prev"><a href="'.base_url().'news?page='.$page->before.'">← Previous</a></li>';
+                    }
+                    for ($i=1; $i <= $page->last; $i++) {
+                      if ($page->current == $i) {
+                        echo '<li class="active"><a href="'.base_url().'news?page='.$i.'">'.$i.'</a></li>';
+                      } else {
+                        echo '<li><a href="'.base_url().'news?page='.$i.'">'.$i.'</a></li>';
+                      }
+                    }
+                    if ($page->current == $page->last) {
+                      echo '<li class="next disabled"><a href="'.base_url().'news?page='.$page->next.'">Next → </a></li>';
+                    } else {
+                      echo '<li class="next"><a href="'.base_url().'news?page='.$page->next.'">Next → </a></li>';
+                    }
+                   ?>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->

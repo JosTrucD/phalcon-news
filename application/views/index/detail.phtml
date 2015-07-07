@@ -1,0 +1,104 @@
+<div class="current-page">
+	<?php $category = Category::findFirst($news->category); ?>
+	<a href="<?php echo base_url() ?>"><i class="fa fa-home"></i> <i class="fa fa-angle-double-right"></i></a> <a href="<?php echo base_url()."danh-muc/".$category->id."-".$this->string->replace($category->name) ?>"><?php echo $category->name ?> <i class="fa fa-angle-double-right"></i></a> <?php echo $news->name ?>
+</div> <!-- / .current-page -->
+<article id="ccr-article">
+	<h1><?php echo $news->name ?>.</h1>
+	<div class="article-tags">	
+		<i class="fa fa-user"></i> <?php echo $news->author ?> &nbsp;<i class="fa fa-calendar"></i> <?php $this->date->dmY($news->date) ?>
+	</div> <!-- /.article-like-comment-date -->
+	<p><?php echo $news->info ?></p>
+	<div class="article-like-comment-date">
+		Tags: <?php $this->string->tag($news->tag); ?>
+		<a class="like" href="#"><i class="fa fa-thumbs-o-up"></i> 08</a>
+		<a class="comments" href="#"><i class="fa fa-comments-o"></i> 49</a>										
+	</div>
+</article> <!-- /#ccr-single-post -->
+<section id="ccr-article-related-post">
+	<div class="ccr-gallery-ttile">
+			<span class="bottom"></span>
+			<p>Bài viết liên quan</p>
+	</div> <!-- .ccr-gallery-ttile -->
+	<ul>
+		<?php 
+		foreach ($data['relate'] as $key => $relate) { ?>
+			<li>							
+				<div class="ccr-thumbnail">
+					<img src="<?php echo base_url()."uploads/news/".$this->date->mdY($relate->date)."/".$relate->image ?>" alt="<?php echo $relate->image ?>" height="106">
+					<p><a href="<?php echo base_url()."bai-viet/".$relate->id."-".$this->string->replace($relate->name) ?>">Đọc tiếp</a></p>
+				</div>
+				<h5><a href="<?php echo base_url()."bai-viet/".$relate->id."-".$this->string->replace($relate->name) ?>"><?php $this->string->read_more($relate->name, 70) ?></a></h5>
+			</li>
+		<?php } ?>
+	</ul>
+</section> <!-- /#ccr-article-related-post -->
+<section class="bottom-border"></section> <!-- /#bottom-border -->
+<section id="ccr-commnet">
+	<div class="ccr-gallery-ttile">
+			<span class="bottom"></span>
+			<p>Comment</p>
+	</div> <!-- .ccr-gallery-ttile -->
+
+	<ol class="commentlist">
+		<li  class="comment">
+			<article>
+				<div class="comment-authore">
+					<img src="img/avatar3.jpg" alt="Avatar">
+					<a href="#">Hena</a>
+				</div>
+				<div class="comment-content">
+					Lorem idivsum dolor sit amet, consectetur adipisicing elit. Sapiente, repellendus, omnis, ullam fugit repudiandae reiciendis velit ad consequuntur porro laudantium delectus nulla nemo assumenda sunt culpa voluptatum deleniti dolore fugiat.
+				</div>
+				<div class="reply"><a href="#">Reply</a></div>
+				<div class="comment-meta"> 08 February; 2014</div>
+			</article>
+			<ul class="children">
+				<li class="comment">
+					<article>
+						<div class="comment-authore">
+							<img src="img/avatar.png" alt="Avatar">
+							<a href="#">Joly</a>
+						</div>
+						<div class="comment-content">
+							Lorem idivsum dolor sit amet, consectetur adipisicing elit. Sapiente, repellendus, omnis, ullam fugit repudiandae reiciendis velit ad consequuntur porro laudantium delectus nulla nemo assumenda sunt culpa voluptatum deleniti dolore fugiat.
+						</div>
+						<div class="reply"><a href="#">Reply</a></div>
+						<div class="comment-meta"> 08 February; 2014</div>
+					</article>
+					<ul class="children">
+						<li class="comment">
+							<article>
+								<div class="comment-authore">
+									<img src="img/avatar3.jpg" alt="Avatar">
+									<a href="#">Hena</a>
+								</div>
+								<div class="comment-content">
+									Lorem idivsum dolor sit amet, consectetur adipisicing elit. Sapiente, repellendus, omnis, ullam fugit repudiandae reiciendis velit ad consequuntur porro laudantium delectus nulla nemo assumenda sunt culpa voluptatum deleniti dolore fugiat.
+								</div>
+								<div class="reply"><a href="#">Reply</a></div>
+								<div class="comment-meta"> 08 February; 2014</div>
+							</article>
+							
+						</li> <!-- /.comment -->
+					</ul> <!-- /.children -->
+					
+				</li> <!-- /.comment -->
+			</ul> <!-- /.children -->
+		</li> <!-- /.comment -->
+	</ol> <!-- /.commentlist -->
+</section> <!-- /#ccr-commnet -->
+<section class="bottom-border"></section> <!-- /#bottom-border -->
+<section id="ccr-respond">
+	<div class="ccr-gallery-ttile">
+		<span class="bottom"></span>
+		<p>Post a Comment</p>
+	</div> <!-- .ccr-gallery-ttile -->
+	<div id="respond">
+		<form action="" method="post" id="commentform">
+		<input id="author" name="author" type="text" placeholder="Name" value="" required>
+		<input id="email" name="email" type="email" placeholder="Email" value="" required>
+		<textarea id="comment" name="comment" placeholder="Message" rows="8" required></textarea>
+		<input name="submit" type="submit" id="submit" value="Submit">					
+		</form> <!-- /#commentform -->					
+	</div> <!-- /#respond -->
+</section> <!-- /#ccr-respond -->
